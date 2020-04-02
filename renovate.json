@@ -1,5 +1,12 @@
 {
   "extends": [
     "config:base"
+  ],
+  "pinVersion": false,
+  "packageRules": [
+    {
+      "updateTypes": ["major"],
+      "labels": "UPDATE-MAJOR"
+    }
   ]
 }
