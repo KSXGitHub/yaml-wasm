@@ -1,35 +1,34 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
-* @param {string} msg 
-* @returns {Message} 
-*/
-export function message(msg: string): Message;
-export class Message {
-  free(): void;
-/**
-* Create new `Message`
-* @param {string} msg 
-*/
-  constructor(msg: string);
-/**
-* Get message
+* Encode a JavaScript value into a YAML text.
+*
+* Throws on failure.
+*
+* **NOTE:** Circular object will result in infinite loop.
+* @param {any} value 
 * @returns {string} 
 */
-  message(): string;
-}
+export function stringify(value: any): string;
+/**
+* Parse a YAML Text into a JavaScript value.
+*
+* Throws on failure.
+* @param {string} text 
+* @returns {any} 
+*/
+export function parse(text: string): any;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
-  readonly __wbg_message_free: (a: number) => void;
-  readonly message_new: (a: number, b: number) => number;
-  readonly message_message: (a: number, b: number) => void;
-  readonly message: (a: number, b: number) => number;
+  readonly stringify: (a: number, b: number) => void;
+  readonly parse: (a: number, b: number) => number;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
   readonly __wbindgen_free: (a: number, b: number) => void;
+  readonly __wbindgen_exn_store: (a: number) => void;
 }
 
 /**
