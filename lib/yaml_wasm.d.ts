@@ -1,6 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
+* Parse a YAML Text into a JavaScript value.
+* Throws on failure.
 * @param {string} text 
 * @returns {any} 
 */

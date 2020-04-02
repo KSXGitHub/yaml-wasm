@@ -10,6 +10,8 @@ use yaml_rust::*;
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
+/// Parse a YAML Text into a JavaScript value.
+/// Throws on failure.
 #[wasm_bindgen]
 pub fn parse(text: &str) -> Result<JsValue, JsValue> {
     let vec = YamlLoader::load_from_str(text)
