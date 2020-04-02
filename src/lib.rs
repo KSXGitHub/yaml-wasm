@@ -11,12 +11,6 @@ use yaml_rust::*;
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
-pub struct Foo {
-    pub foo: f64,
-    pub bar: i32,
-}
-
-#[wasm_bindgen]
 pub fn parse(text: &str) -> Result<JsValue, JsValue> {
     let vec = YamlLoader::load_from_str(text)
         .map_err(|_err| JsValue::from("Failed to parse YAML"))?
