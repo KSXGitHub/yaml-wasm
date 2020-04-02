@@ -1,4 +1,4 @@
-import init, { Message } from './wasm-pack/yaml_wasm.js'
+import init, { Message } from './index.js'
 await init()
 const message = new Message('Hello, World!!')
 console.log(message)
