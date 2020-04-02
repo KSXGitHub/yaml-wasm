@@ -1,2 +1,2 @@
 wasm-pack: src/**
-	wasm-pack build --target bundler --out-dir wasm-pack --release
+	wasm-pack build --target web --out-dir wasm-pack --release
