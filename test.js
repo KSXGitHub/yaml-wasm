@@ -1,5 +1,3 @@
-import init, { Message } from './index.js'
+import init, { main } from './index.js'
 await init()
-const message = new Message('Hello, World!!')
-console.log(message)
-console.log(message.message())
+console.log(main(123, 456))

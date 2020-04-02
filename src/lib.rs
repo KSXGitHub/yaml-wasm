@@ -1,6 +1,8 @@
 mod utils;
 
 use wasm_bindgen::prelude::*;
+use js_sys::*;
+// use yaml_rust::*;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
@@ -8,27 +10,16 @@ use wasm_bindgen::prelude::*;
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
-/// Message class
 #[wasm_bindgen]
-pub struct Message {
-    msg: String,
+pub struct Foo {
+    pub foo: f64,
+    pub bar: i32,
 }
 
 #[wasm_bindgen]
-impl Message {
-    /// Create new `Message`
-    #[wasm_bindgen(constructor)]
-    pub fn new (msg: String) -> Self {
-        Message { msg }
-    }
-
-    /// Get message
-    pub fn message (&self) -> String {
-        self.msg.clone()
-    }
-}
-
-#[wasm_bindgen]
-pub fn message (msg: &str) -> Message {
-    Message::new(msg.to_owned())
+pub fn main(foo: f64, bar: i32) -> Result<Object, JsValue> {
+    let object = Object::new();
+    Reflect::set(&object, &JsValue::from("foo"), &JsValue::from(foo))?;
+    Reflect::set(&object, &JsValue::from("bar"), &JsValue::from(bar))?;
+    Ok(object)
 }
