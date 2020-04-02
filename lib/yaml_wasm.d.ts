@@ -1,3 +1,4 @@
+/// <references lib="DOM" />
 /* tslint:disable */
 /* eslint-disable */
 /**
