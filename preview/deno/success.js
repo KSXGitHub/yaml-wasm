@@ -1,4 +1,4 @@
-import init, { parse } from './index.js'
+import init, { parse } from '../../index.js'
 await init()
 console.log(parse(`
 ---
