@@ -6,3 +6,4 @@ pkg/
 *.log
 /.vscode
 /wasm-pack
+node_modules
