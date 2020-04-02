@@ -5,3 +5,4 @@ bin/
 pkg/
 *.log
 /.vscode
+/wasm-pack
