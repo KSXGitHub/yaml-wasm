@@ -1,11 +1,10 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
-* @param {number} foo 
-* @param {number} bar 
-* @returns {object} 
+* @param {string} text 
+* @returns {any} 
 */
-export function main(foo: number, bar: number): object;
+export function parse(text: string): any;
 export class Foo {
   free(): void;
   bar: number;
@@ -21,7 +20,9 @@ export interface InitOutput {
   readonly __wbg_set_foo_foo: (a: number, b: number) => void;
   readonly __wbg_get_foo_bar: (a: number) => number;
   readonly __wbg_set_foo_bar: (a: number, b: number) => void;
-  readonly main: (a: number, b: number) => number;
+  readonly parse: (a: number, b: number) => number;
+  readonly __wbindgen_malloc: (a: number) => number;
+  readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
   readonly __wbindgen_exn_store: (a: number) => void;
 }
 
