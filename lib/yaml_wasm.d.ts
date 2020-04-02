@@ -12,6 +12,7 @@
 export function stringify(value: any): string;
 /**
 * Parse a YAML Text into a JavaScript value.
+*
 * Throws on failure.
 * @param {string} text 
 * @returns {any} 

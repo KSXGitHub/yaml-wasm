@@ -78,6 +78,7 @@ fn js2yaml(js: JsValue) -> Yaml {
 }
 
 /// Parse a YAML Text into a JavaScript value.
+///
 /// Throws on failure.
 #[wasm_bindgen]
 pub fn parse(text: &str) -> Result<JsValue, JsValue> {
