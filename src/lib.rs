@@ -17,6 +17,7 @@ pub struct Message {
 #[wasm_bindgen]
 impl Message {
     /// Create new `Message`
+    #[wasm_bindgen(constructor)]
     pub fn new (msg: String) -> Self {
         Message { msg }
     }
