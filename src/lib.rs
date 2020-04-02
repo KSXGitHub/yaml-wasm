@@ -15,7 +15,7 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 #[wasm_bindgen]
 pub fn parse(text: &str) -> Result<JsValue, JsValue> {
     let vec = YamlLoader::load_from_str(text)
-        .map_err(|_err| JsValue::from("Failed to parse YAML"))?
+        .map_err(|_err| SyntaxError::new("Text is not valid YAML"))?
         .iter()
         .map(|x| yaml2js(x))
         .collect::<Vec<JsValue>>();
