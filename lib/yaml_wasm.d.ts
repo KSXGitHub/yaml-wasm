@@ -1,6 +1,16 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
+* Encode a JavaScript value into a YAML text.
+*
+* Throws on failure.
+*
+* **NOTE:** Circular object will result in infinite loop.
+* @param {any} value 
+* @returns {string} 
+*/
+export function stringify(value: any): string;
+/**
 * Parse a YAML Text into a JavaScript value.
 * Throws on failure.
 * @param {string} text 
@@ -12,9 +22,11 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
+  readonly stringify: (a: number, b: number) => void;
   readonly parse: (a: number, b: number) => number;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
+  readonly __wbindgen_free: (a: number, b: number) => void;
   readonly __wbindgen_exn_store: (a: number) => void;
 }
 
