@@ -1,0 +1,15 @@
+{
+  "name": "yaml-wasm",
+  "collaborators": [
+    "khai96_ <hvksmr1996@gmail.com>"
+  ],
+  "version": "0.0.0",
+  "files": [
+    "yaml_wasm_bg.wasm",
+    "yaml_wasm.js",
+    "yaml_wasm.d.ts"
+  ],
+  "module": "yaml_wasm.js",
+  "types": "yaml_wasm.d.ts",
+  "sideEffects": false
+}
