@@ -1036,15 +1036,10 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-/FQM1EDkTsf63Ub2C6O7GuYFDsSXUwsaZDurV0np41ocwq0jthUAYCmhBX9f+KwlaCgIuWyr/4WlUQUBfKfZog==
-  /any-observable/0.5.1_rxjs@6.5.4:
-    dependencies:
-      rxjs: 6.5.4
+  /any-observable/0.5.1:
     dev: true
     engines:
       node: '>=8'
-    peerDependencies:
-      rxjs: '*'
-      zen-observable: '*'
     peerDependenciesMeta:
       rxjs:
         optional: true
@@ -2488,7 +2483,7 @@ packages:
   /np/5.2.1:
     dependencies:
       '@samverschueren/stream-to-observable': 0.3.0
-      any-observable: 0.5.1_rxjs@6.5.4
+      any-observable: 0.5.1
       async-exit-hook: 2.0.1
       chalk: 3.0.0
       cosmiconfig: 5.2.1
@@ -3600,6 +3595,6 @@ packages:
     resolution:
       integrity: sha512-3lbsNRf/j+A4QuSZfDRA7HRSfWrzO0YjqTJd5kjAq37Zep1CEgaYmrH9Q3GwPiB9cHyd1Y1UwggGhJGoxipbzg==
 specifiers:
-  '@pika/pack': ^0.5.0
-  '@pika/plugin-build-deno': ^0.9.2
-  '@pika/plugin-build-node': ^0.9.2
+  '@pika/pack': 0.5.0
+  '@pika/plugin-build-deno': 0.9.2
+  '@pika/plugin-build-node': 0.9.2
