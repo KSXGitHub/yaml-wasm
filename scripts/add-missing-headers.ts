@@ -10,7 +10,10 @@ const oldContent = await fs.readFileStr(filename)
 
 const newContent = prependIfMissing(
   oldContent,
-  '/// <references lib="DOM" />'
+
+  // Some types aren't supported by Deno
+  'type RequestInfo = never',
+  'type BufferSource = never'
 )
 
 await fs.writeFileStr(filename, newContent)

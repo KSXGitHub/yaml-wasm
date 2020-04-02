@@ -1,4 +1,5 @@
-/// <references lib="DOM" />
+type RequestInfo = never
+type BufferSource = never
 /* tslint:disable */
 /* eslint-disable */
 /**
