@@ -32,6 +32,17 @@ console.log(text)
 
 _TODO_
 
+## Demo
+
+### Web Browser
+
+Go to https://ksxgithub.github.io/yaml-wasm/preview/browser/ and open DevTools console.
+
+### Deno
+
+* `deno run https://ksxgithub.github.io/yaml-wasm/preview/deno/success.ts` for successful operation.
+* `deno run https://ksxgithub.github.io/yaml-wasm/preview/deno/failure.ts` for example error messages.
+
 ## License
 
 [MIT](https://git.io/JvFmv) © [Hoàng Văn Khải](https://github.com/KSXGitHub/)
