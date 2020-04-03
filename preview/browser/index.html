@@ -3,6 +3,19 @@
 <script type="module">
   import * as lib from '../../index.js'
   window.lib = lib
+  console.log(
+    '%cTips:%c You may access the library via window.lib',
+    `
+      display: block;
+      color: white;
+      size: 1.5em;
+      background: blue;
+      font-weight: bold;
+      padding: 2px;
+      border-radius: 2px;
+    `,
+    ''
+  )
 </script>
 <style>
   main {
