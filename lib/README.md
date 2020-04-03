@@ -11,7 +11,7 @@ Use ES Module to import `./index.js`.
 On Deno, make sure to enable `--allow-net` to allow `fetch()` to work properly.
 
 ```javascript
-import init, { parse, stringify } from 'https://deno.land/x/yaml_wasm@0.1.2/index.js'
+import init, { parse, stringify } from 'https://deno.land/x/yaml_wasm@0.1.3/index.js'
 await init()
 
 // Convert YAML text to JavaScript object
