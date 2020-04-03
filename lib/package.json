@@ -3,11 +3,18 @@
   "collaborators": [
     "khai96_ <hvksmr1996@gmail.com>"
   ],
+  "description": "WebAssembly module to parse YAML",
   "version": "0.1.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KSXGitHub/yaml-wasm.git"
+  },
   "files": [
     "yaml_wasm_bg.wasm",
     "yaml_wasm.js",
-    "yaml_wasm.d.ts"
+    "yaml_wasm.d.ts",
+    "LICENSE.md"
   ],
   "module": "yaml_wasm.js",
   "types": "yaml_wasm.d.ts",
