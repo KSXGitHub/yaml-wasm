@@ -7,3 +7,4 @@ pkg/
 /wasm-pack
 node_modules
 .cargo-ok
+/nodejs
