@@ -26,4 +26,4 @@ init().then(async () => {
     console.log()
     console.log(stringify(item))
   }
-}).catch(console.error)
+})
