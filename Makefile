@@ -10,3 +10,7 @@ lib: wasm-pack/web
 
 nodejs:	wasm-pack/nodejs
 	cp -u wasm-pack/nodejs/* nodejs/
+
+publish-npm-package: nodejs
+	cd nodejs
+	smart-publish
