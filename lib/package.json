@@ -4,7 +4,7 @@
     "khai96_ <hvksmr1996@gmail.com>"
   ],
   "description": "WebAssembly module to parse YAML",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "repository": {
     "type": "git",
