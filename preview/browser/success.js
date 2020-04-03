@@ -1,7 +1,7 @@
 import init, { parse, stringify } from '../../index.js'
 
 init().then(async () => {
-  const response = await fetch('./valid.yaml')
+  const response = await fetch('./valid-yaml')
   console.log('%c parse()', 'font-size: 2em; color: red')
   console.log(parse(await response.text()))
 
