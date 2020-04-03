@@ -3,6 +3,7 @@ mod utils;
 use wasm_bindgen::prelude::*;
 use js_sys::*;
 use yaml_rust::*;
+use utils::*;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
@@ -17,6 +18,7 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 /// **NOTE:** Circular object will result in infinite loop.
 #[wasm_bindgen]
 pub fn stringify(value: JsValue) -> Result<String, JsValue> {
+    set_panic_hook();
     let mut text = String::new();
     let mut emitter = YamlEmitter::new(&mut text);
     let doc = js2yaml(value);
@@ -82,6 +84,7 @@ fn js2yaml(js: JsValue) -> Yaml {
 /// Throws on failure.
 #[wasm_bindgen]
 pub fn parse(text: &str) -> Result<JsValue, JsValue> {
+    set_panic_hook();
     let vec = YamlLoader::load_from_str(text)
         .map_err(|_err| SyntaxError::new("Text is not valid YAML"))?
         .iter()
