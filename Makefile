@@ -12,5 +12,4 @@ nodejs:	wasm-pack/nodejs
 	cp -u wasm-pack/nodejs/* nodejs/
 
 publish-npm-package: nodejs
-	cd nodejs
-	smart-publish
+	sh -c 'cd nodejs && smart-publish'
