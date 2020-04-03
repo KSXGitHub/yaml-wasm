@@ -1,6 +1,6 @@
-wasm-pack: src/** Cargo.toml
-	wasm-pack build --target web --out-dir wasm-pack --release
+wasm-pack/web: src/** Cargo.toml
+	wasm-pack build --target web --out-dir wasm-pack/web --release
 
-lib: wasm-pack
-	cp -u wasm-pack/* lib/
+lib: wasm-pack/web
+	cp -u wasm-pack/web/* lib/
 	deno run --allow-read=lib --allow-write scripts/add-missing-headers.ts
