@@ -13,37 +13,40 @@ pub fn stringify(value: JsValue) -> Result<String, JsValue> {
     set_panic_hook();
     let mut text = String::new();
     let mut emitter = YamlEmitter::new(&mut text);
-    let doc = js2yaml(value);
-    emitter.dump(&doc).map_err(|_err| Error::new("Something goes wrong"))?;
+    if let Some(doc) = js2yaml(value) {
+        emitter.dump(&doc).map_err(|_err| Error::new("Something goes wrong"))?;
+    } else {
+        return Err(JsValue::from(TypeError::new("Bad value")));
+    }
     Ok(text)
 }
 
-fn js2yaml(js: JsValue) -> Yaml {
+fn js2yaml(js: JsValue) -> Option<Yaml> {
     if js.is_function() || js.is_symbol() || js.is_undefined() {
-        return Yaml::BadValue;
+        return None;
     }
 
     if js.is_null() {
-        return Yaml::Null;
+        return Some(Yaml::Null);
     }
 
     if js.is_string() {
-        return Yaml::String(js.as_string().unwrap());
+        return Some(Yaml::String(js.as_string().unwrap()));
     }
 
     if Number::is_integer(&js) {
-        return Yaml::Integer(js.as_f64().unwrap() as i64);
+        return Some(Yaml::Integer(js.as_f64().unwrap() as i64));
     }
 
     if Number::is_finite(&js) {
-        return Yaml::Real(js.as_f64().unwrap().to_string());
+        return Some(Yaml::Real(js.as_f64().unwrap().to_string()));
     }
 
     if js.is_object() {
-        return if Array::is_array(&js) {
+        return Some(if Array::is_array(&js) {
             let vec = Array::from(&js)
                 .iter()
-                .map(|x| js2yaml(x))
+                .filter_map(|x| js2yaml(x))
                 .collect::<Vec<Yaml>>();
             Yaml::Array(vec)
         } else {
@@ -51,21 +54,23 @@ fn js2yaml(js: JsValue) -> Yaml {
             let mut hash = LinkedHashMap::new();
             let entries = Array::from(&Object::entries(&Object::from(js)));
             for entry in entries.iter() {
-                let pair = Array::from(&entry);
-                let key = pair.get(0);
-                let value = pair.get(1);
-                hash.insert(js2yaml(key), js2yaml(value));
+                let js_pair = Array::from(&entry);
+                let js_key = js_pair.get(0);
+                let js_value = js_pair.get(1);
+                if let (Some(yaml_key), Some(yaml_value)) = (js2yaml(js_key), js2yaml(js_value)) {
+                    hash.insert(yaml_key, yaml_value);
+                }
             }
             Yaml::Hash(hash)
-        }
+        })
     }
 
     if js.is_falsy() {
-        return Yaml::Boolean(false);
+        return Some(Yaml::Boolean(false));
     }
 
     if js.is_truthy() {
-        return Yaml::Boolean(true);
+        return Some(Yaml::Boolean(true));
     }
 
     unreachable!();
