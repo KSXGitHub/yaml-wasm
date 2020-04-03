@@ -22,6 +22,7 @@ Hello There
 `
 
 init().then(() => {
+  console.log('%c parse()', 'font-size: 2em; color: red')
   console.log(parse(yamlText))
 
   console.log('%c stringify()', 'font-size: 2em; color: red')
