@@ -1,0 +1,31 @@
+on:
+  - push
+  - pull_request
+
+name: CI
+
+jobs:
+  build_and_test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rust:
+          - stable
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: ${{ matrix.rust }}
+          components: wasm32-unknown-unknown
+          override: true
+          default: true
+      - name: Install make
+        run: sudo apt install -y make
+      - name: Install wasm-pack
+        run: cargo install wasm-pack
+      - name: Build
+        run: make lib
+      - name: Test
+        run: deno run -A run-tests.ts
