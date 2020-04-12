@@ -48,7 +48,7 @@ const cp = Deno.run({
   cmd: [
     'deno', 'test',
     ...remoteTestFiles.map(url => '--reload=' + url),
-    '-A',
+    '--allow-net=' + addr,
     ...remoteTestFiles
   ],
   stdout: 'inherit',
