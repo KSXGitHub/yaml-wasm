@@ -46,7 +46,7 @@ server.start().catch(error => {
 const cp = Deno.run({
   cmd: [
     'deno', 'test',
-    ...testFiles.map(url => '--reload=' + url),
+    '--reload=http://' + addr,
     '--allow-net=' + addr,
     ...testFiles
   ],
