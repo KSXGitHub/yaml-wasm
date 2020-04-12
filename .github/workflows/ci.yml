@@ -1,0 +1,35 @@
+on:
+  - push
+  - pull_request
+
+name: CI
+
+jobs:
+  build_and_test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rust:
+          - stable
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: ${{ matrix.rust }}
+          target: wasm32-unknown-unknown
+          override: true
+          default: true
+      - name: Install necessary packages
+        run: sudo apt install -y make curl
+      - name: Install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+      - name: Install Deno
+        run: |
+          curl -fsSL https://deno.land/x/install/install.sh | sh -s ${{ matrix.vars.deno }}
+          sudo ln -s "$HOME/.deno/bin/deno" /bin/deno
+      - name: Build
+        run: make lib
+      - name: Test
+        run: deno run -A run-tests.ts
