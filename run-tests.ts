@@ -12,21 +12,20 @@ import {
 const workDir = dirname(import.meta)
 Deno.chdir(workDir)
 
+const addr = '0.0.0.0:4321'
 const testFileRegex = /\.test\.(ts|js)$/i
 const testFiles: string[] = []
 const deep: DeepFunc = param => !['.git', 'node_modules'].includes(param.info.name!)
 for await (const item of traverseFileSystem('.', deep)) {
   const filename = path.join(item.container, item.info.name!)
   if (!testFileRegex.test(filename)) continue
-  testFiles.push(filename)
+  testFiles.push(`http://${addr}/${filename}`)
 }
 if (!testFiles.length) {
   console.error('No tests.')
   throw Deno.exit(-1)
 }
 
-const addr = '0.0.0.0:4321'
-const remoteTestFiles = testFiles.map(filename => `http://${addr}/${filename}`)
 const server = new FileServer({
   addr,
   cors: true,
@@ -47,9 +46,9 @@ server.start().catch(error => {
 const cp = Deno.run({
   cmd: [
     'deno', 'test',
-    ...remoteTestFiles.map(url => '--reload=' + url),
+    ...testFiles.map(url => '--reload=' + url),
     '--allow-net=' + addr,
-    ...remoteTestFiles
+    ...testFiles
   ],
   stdout: 'inherit',
   stderr: 'inherit',
