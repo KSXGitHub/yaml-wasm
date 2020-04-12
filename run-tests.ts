@@ -9,6 +9,11 @@ import {
   FileServer
 } from 'https://raw.githubusercontent.com/KSXGitHub/deno_simple_static_server/0.0.0/lib.ts'
 
+if (!import.meta.url.startsWith('file:')) {
+  console.error('This script must be executed locally')
+  throw Deno.exit(-1)
+}
+
 const workDir = dirname(import.meta)
 Deno.chdir(workDir)
 
