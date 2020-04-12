@@ -40,7 +40,7 @@ before_install:
   - sudo ln -s "$HOME/.deno/bin/deno" /bin/deno
 
   # Install wasm-pack
-  - curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+  - curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh -s -- -f
 
 script:
   - make lib
