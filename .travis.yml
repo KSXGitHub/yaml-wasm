@@ -39,8 +39,8 @@ before_install:
   - curl -fsSL https://deno.land/x/install/install.sh | sh -s $DENO_VERSION
   - sudo ln -s "$HOME/.deno/bin/deno" /bin/deno
 
-  # Install necessary cargo packages
-  - cargo install wasm-pack wasm-bindgen
+  # Install wasm-pack
+  - curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
 script:
   - make lib
