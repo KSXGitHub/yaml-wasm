@@ -25,6 +25,10 @@ jobs:
         run: sudo apt install -y make
       - name: Install wasm-pack
         run: cargo install wasm-pack
+      - name: Install Deno
+        run: |
+          curl -fsSL https://deno.land/x/install/install.sh | sh -s ${{ matrix.vars.deno }}
+          sudo ln -s "$HOME/.deno/bin/deno" /bin/deno
       - name: Build
         run: make lib
       - name: Test
