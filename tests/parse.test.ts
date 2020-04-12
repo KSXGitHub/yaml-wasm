@@ -1,5 +1,9 @@
 import init, { parse } from '../index.js'
-import { assertEquals } from './deps.ts'
+import {
+  assert,
+  assertEquals,
+  tryExec
+} from './deps.ts'
 
 const yamlText = `
 ---
@@ -22,7 +26,7 @@ null
 Hello There
 `
 
-Deno.test('parse', async () => {
+Deno.test('parse success', async () => {
   await init()
   const actual = parse(yamlText)
   assertEquals(actual, [
@@ -37,4 +41,12 @@ Deno.test('parse', async () => {
     null,
     'Hello There'
   ])
+})
+
+Deno.test('parse failure', async () => {
+  await init()
+  const actual = tryExec(() => parse(': this : is : not : valid : yaml :'))
+  assert(actual.tag === false, 'not an err')
+  assertEquals(actual.error.name, 'SyntaxError')
+  assertEquals(actual.error.message, 'Text is not valid YAML')
 })
