@@ -18,7 +18,7 @@ jobs:
         with:
           profile: minimal
           toolchain: ${{ matrix.rust }}
-          components: wasm32-unknown-unknown
+          components: rust-std-wasm32-unknown-unknown
           override: true
           default: true
       - name: Install make
