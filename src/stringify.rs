@@ -14,7 +14,9 @@ pub fn stringify(value: JsValue) -> Result<String, JsValue> {
     let mut text = String::new();
     let mut emitter = YamlEmitter::new(&mut text);
     if let Some(doc) = js2yaml(value) {
-        emitter.dump(&doc).map_err(|_err| Error::new("Something goes wrong"))?;
+        emitter
+            .dump(&doc)
+            .map_err(|error| Error::new(&format!("{}", error)))?;
     } else {
         return Err(JsValue::from(TypeError::new("Bad value")));
     }
