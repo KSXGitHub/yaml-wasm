@@ -1,65 +1,8 @@
 #! /usr/bin/env -S deno -A
-import * as path from 'https://deno.land/std@v0.40.0/path/mod.ts'
 import { dirname } from 'https://deno.land/x/dirname/mod.ts'
-import {
-  DeepFunc,
-  traverseFileSystem
-} from 'https://deno.land/x/tree@0.1.1/async.ts'
-import {
-  FileServer
-} from 'https://raw.githubusercontent.com/KSXGitHub/deno_simple_static_server/0.0.0/lib.ts'
-
-if (!import.meta.url.startsWith('file:')) {
-  console.error('This script must be executed locally')
-  throw Deno.exit(-1)
-}
-
+import run from 'https://raw.githubusercontent.com/KSXGitHub/deno_run_tests_on_localhost/0.0.0/run.ts'
 const workDir = dirname(import.meta)
-Deno.chdir(workDir)
-
-const addr = '0.0.0.0:4321'
-const testFileRegex = /\.test\.(ts|js)$/i
-const testFiles: string[] = []
-const deep: DeepFunc = param => !['.git', 'node_modules'].includes(param.info.name!)
-for await (const item of traverseFileSystem('.', deep)) {
-  const filename = path.join(item.container, item.info.name!)
-  if (!testFileRegex.test(filename)) continue
-  testFiles.push(`http://${addr}/${filename}`)
-}
-if (!testFiles.length) {
-  console.error('No tests.')
-  throw Deno.exit(-1)
-}
-
-const server = new FileServer({
-  addr,
-  cors: true,
-  target: workDir,
-  onError (error) {
-    console.error('Server encounters an unexpected error.')
-    console.error(error)
-    server.stop()
-    return Deno.exit(-1)
-  }
-})
-server.start().catch(error => {
-  console.error('Unexpected error')
-  console.error(error)
-  return Deno.exit(-1)
-})
-
-const cp = Deno.run({
-  cmd: [
-    'deno', 'test',
-    '--reload=http://' + addr,
-    '--allow-net=' + addr,
-    ...testFiles
-  ],
-  stdout: 'inherit',
-  stderr: 'inherit',
-  stdin: 'inherit'
-})
-
-const { code } = await cp.status()
-server.stop()
+const hostname = '0.0.0.0'
+const port = 4321
+const { code } = await run({ workDir, hostname, port })
 throw Deno.exit(code)
