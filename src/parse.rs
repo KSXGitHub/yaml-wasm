@@ -10,7 +10,7 @@ use super::utils::*;
 pub fn parse(text: &str) -> Result<JsValue, JsValue> {
     set_panic_hook();
     let vec = YamlLoader::load_from_str(text)
-        .map_err(|_err| SyntaxError::new("Text is not valid YAML"))?
+        .map_err(|error| SyntaxError::new(&format!("{}", error)))?
         .iter()
         .map(|x| yaml2js(x))
         .collect::<Vec<JsValue>>();

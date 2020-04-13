@@ -48,5 +48,5 @@ Deno.test('parse failure', async () => {
   const actual = tryExec(() => parse(': this : is : not : valid : yaml :'))
   assert(actual.tag === false, 'not an err')
   assertEquals(actual.error.name, 'SyntaxError')
-  assertEquals(actual.error.message, 'Text is not valid YAML')
+  assertEquals(actual.error.message, 'mapping values are not allowed in this context at line 1 column 13')
 })
