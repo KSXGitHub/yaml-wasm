@@ -20,7 +20,7 @@ cache:
     - target
 
     # Deno
-    - $HOME/.deno
+    - $HOME/.cache/deno
 
     # Node.js
     - $HOME/.pnpm-store
