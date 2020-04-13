@@ -31,6 +31,7 @@ addons:
   apt:
     packages:
       - make
+      - zsh
 
 before_cache:
   - rm -rf $HOME/.cargo/registry/src
@@ -44,5 +45,5 @@ before_install:
   - curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh -s -- -f
 
 script:
-  - make lib
+  - export SHELL=/bin/zsh
   - deno run -A run-tests.ts

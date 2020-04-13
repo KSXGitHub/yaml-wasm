@@ -22,7 +22,7 @@ jobs:
           override: true
           default: true
       - name: Install necessary packages
-        run: sudo apt install -y make curl
+        run: sudo apt install -y make curl zsh
       - name: Install wasm-pack
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
       - name: Install Deno
@@ -32,4 +32,6 @@ jobs:
       - name: Build
         run: make lib
       - name: Test
-        run: deno run -A run-tests.ts
+        run: |
+          export SHELL=/bin/zsh
+          deno run -A run-tests.ts
