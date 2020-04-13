@@ -27,13 +27,15 @@ cache:
     - $HOME/.node-gyp
     - $HOME/.node_libraries
 
+addons:
+  apt:
+    packages:
+      - make
+
 before_cache:
   - rm -rf $HOME/.cargo/registry/src
 
 before_install:
-  # Install GNU Make
-  - sudo apt install -y make
-
   # Install Deno
   - curl -fsSL https://deno.land/x/install/install.sh | sh -s $DENO_VERSION
   - sudo ln -s "$HOME/.deno/bin/deno" /bin/deno
