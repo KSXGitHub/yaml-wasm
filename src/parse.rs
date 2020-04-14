@@ -23,12 +23,17 @@ extern "C" {
 pub fn parse(text: &str, options: Option<ParseOptions>) -> Result<JsValue, JsValue> {
     set_panic_hook();
 
-    let use_map: bool = if let Some(opt) = options {
-        Reflect::get(&opt, &JsValue::from("map"))
-            .unwrap_or(JsValue::FALSE)
-            .as_bool()
-            .unwrap_or(false)
-    } else { false };
+    let options_object: JsValue = if let Some(opt) = options {
+        JsValue::from(opt)
+    } else {
+        JsValue::from(Object::new())
+    };
+
+    let use_map: bool = Reflect::get(&options_object, &JsValue::from("map"))
+        .unwrap_or(JsValue::FALSE)
+        .as_bool()
+        .unwrap_or(false);
+
     let js_hash = &if use_map { js_map } else { js_object };
 
     let vec = YamlLoader::load_from_str(text)
