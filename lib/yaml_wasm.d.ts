@@ -8,9 +8,9 @@ type BufferSource = never
 * Throws on failure.
 * @param {string} text 
 * @param {ParseOptions | undefined} options 
-* @returns {any} 
+* @returns {any[]} 
 */
-export function parse(text: string, options?: ParseOptions): any;
+export function parse(text: string, options?: ParseOptions): any[];
 /**
 * Encode a JavaScript value into a YAML text.
 *
@@ -32,7 +32,7 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
-  readonly parse: (a: number, b: number, c: number) => number;
+  readonly parse: (a: number, b: number, c: number, d: number) => void;
   readonly stringify: (a: number, b: number) => void;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;

@@ -20,7 +20,7 @@ extern "C" {
 ///
 /// Throws on failure.
 #[wasm_bindgen]
-pub fn parse(text: &str, options: Option<ParseOptions>) -> Result<JsValue, JsValue> {
+pub fn parse(text: &str, options: Option<ParseOptions>) -> Result<Vec<JsValue>, JsValue> {
     set_panic_hook();
 
     let options_object: JsValue = if let Some(opt) = options {
@@ -41,7 +41,8 @@ pub fn parse(text: &str, options: Option<ParseOptions>) -> Result<JsValue, JsVal
         .iter()
         .map(|x| yaml2js(x, js_hash))
         .collect::<Vec<JsValue>>();
-    Ok(js_array(vec))
+
+    Ok(vec)
 }
 
 fn yaml2js(
