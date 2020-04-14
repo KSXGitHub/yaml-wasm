@@ -28,30 +28,6 @@ const text = stringify(value)
 console.log(text)
 ```
 
-### Node.js
-
-Just install [`yaml-wasm` from NPM](https://npmjs.com/package/yaml-wasm):
-  * Using npm: `npm install yaml-wasm`
-  * Using yarn: `yarn add yaml-wasm`
-  * Using pnpm: `pnpm install yaml-wasm`
-
-```javascript
-const { parse, stringify } = require('yaml-wasm')
-
-// Convert YAML text to JavaScript object
-const [value] = parse(`
-abc:
-  def: 456
-foo:
-  - bar
-`)
-console.log(value)
-
-// Convert JavaScript object to YAML text
-const text = stringify(value)
-console.log(text)
-```
-
 ## Demo
 
 ### Web Browser

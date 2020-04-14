@@ -26,7 +26,7 @@ null
 Hello There
 `
 
-Deno.test('parse success', async () => {
+Deno.test('parse into objects successfully', async () => {
   await init()
   const actual = parse(yamlText)
   assertEquals(actual, [
@@ -38,6 +38,25 @@ Deno.test('parse success', async () => {
       object: { foo: 'bar' },
       other_primitives: [null, true, false]
     },
+    null,
+    'Hello There'
+  ])
+})
+
+Deno.test('parse into maps successfully', async () => {
+  await init()
+  const actual = parse(yamlText, {
+    map: true
+  })
+  assertEquals(actual, [
+    new Map<string, unknown>([
+      ['int', 123],
+      ['float', 456.789],
+      ['text', 'hello'],
+      ['array', ['abc', 'def', 123]],
+      ['object', new Map([['foo', 'bar']])],
+      ['other_primitives', [null, true, false]]
+    ]),
     null,
     'Hello There'
   ])
