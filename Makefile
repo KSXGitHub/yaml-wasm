@@ -1,3 +1,6 @@
+deno-lock.json: tests
+	zsh -c 'deno cache tests/**/*.ts --lock=deno-lock.json --lock-write'
+
 wasm-pack/web: src/** Cargo.toml
 	wasm-pack build --target web --out-dir wasm-pack/web --release
 

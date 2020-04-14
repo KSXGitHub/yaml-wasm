@@ -1,0 +1,10 @@
+{
+  "https://deno.land/std@v0.40.0/fmt/colors.ts": "52a9d836d0e49b05253330a6fc762b4e070b8a9f60cd6b3bc3e1f996f431d325",
+  "https://deno.land/std@v0.40.0/testing/format.ts": "2c6bbaf398e6ac7513deb716a799226df6c9e0c7b54f343420774aee0fd673cb",
+  "https://deno.land/std@v0.40.0/testing/asserts.ts": "22cc8f3e37342ef24ddce6a39501a4d418de299345ab5e79c983eced828a0f1f",
+  "https://cdn.pika.dev/-/@tsfun/tap@v0.0.13-uk8RzIAyYZCC0EMx8fSZ/dist=es2019/tap.js": "2accdfbf083aac0e558a5c38e4520529d39f235dfa8f8dbf5727d0cf78214cd0",
+  "https://cdn.pika.dev/@tsfun/result/0.0.19": "7373ad7babffd2ab51c3fa399b93d8a90d7fa54a73915e663d32d5cdc30d1a0d",
+  "https://deno.land/std@v0.40.0/testing/diff.ts": "19c6766a2d03d507dcd9b38f27a134fe7df4e9abac08a51a8d9a826901de6dbf",
+  "https://cdn.pika.dev/-/@tsfun/prv-option-result-common@v0.0.14-8FsJwfqk8vMsPVLYuxsB/dist=es2019/prv-option-result-common.js": "e00c87f034d6a900310d1c5bf9f9092fa24a47ed235eafd6069fa02e732f2462",
+  "https://cdn.pika.dev/-/@tsfun/result@v0.0.19-3Tx9bEwuxf0kGErDz9iz/dist=es2019/result.js": "5e1e666cb9118a39eb1562c5f9ced338133309a4f346ec8742f6a162164cc072"
+}
