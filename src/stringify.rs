@@ -3,6 +3,15 @@ use js_sys::*;
 use yaml_rust::*;
 use super::utils::*;
 
+#[wasm_bindgen(inline_js = r"
+    export const instance_of = (obj, cls) => obj instanceof cls;
+    export const map_cls = () => Map;
+")]
+extern "C" {
+    fn instance_of(obj: &JsValue, cls: &JsValue) -> bool;
+    fn map_cls() -> JsValue;
+}
+
 /// Encode a JavaScript value into a YAML text.
 ///
 /// Throws on failure.
@@ -54,7 +63,11 @@ fn js2yaml(js: JsValue) -> Option<Yaml> {
         } else {
             use linked_hash_map::LinkedHashMap;
             let mut hash = LinkedHashMap::new();
-            let entries = Array::from(&Object::entries(&Object::from(js)));
+            let entries: Array = if instance_of(&js, &map_cls()) {
+                Array::from(&js)
+            } else {
+                Array::from(&Object::entries(&Object::from(js)))
+            };
             for entry in entries.iter() {
                 let js_pair = Array::from(&entry);
                 let js_key = js_pair.get(0);
