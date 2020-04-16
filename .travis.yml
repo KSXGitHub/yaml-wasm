@@ -10,6 +10,8 @@ rust: stable
 
 env:
   - DENO_VERSION=v0.40.0
+    SCCACHE_VERSION=0.2.13
+    RUSTC_WRAPPER=sccache
 
 cache:
   directories:
@@ -43,6 +45,9 @@ before_install:
 
   # Install wasm-pack
   - curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh -s -- -f
+
+  # Install sccache
+  - sudo zsh ci/install-sccache.zsh
 
 script:
   - export SHELL=/bin/zsh
