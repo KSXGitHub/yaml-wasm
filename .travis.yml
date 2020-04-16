@@ -12,6 +12,7 @@ env:
   - DENO_VERSION=v0.40.0
     SCCACHE_VERSION=0.2.13
     RUSTC_WRAPPER=sccache
+    SCCACHE_CACHE_SIZE=255MB
 
 cache:
   directories:
