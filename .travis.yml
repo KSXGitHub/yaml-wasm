@@ -18,7 +18,6 @@ cache:
   directories:
     # Rust
     - $HOME/.cache/sccache
-    - $HOME/.cargo
     - $HOME/.rustup
     - target
 
