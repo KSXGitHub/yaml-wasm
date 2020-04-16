@@ -12,7 +12,7 @@ url=$prefix/$SCCACHE_VERSION/sccache-$SCCACHE_VERSION-x86_64-unknown-linux-musl.
 binary=/sccache/sccache-$SCCACHE_VERSION-x86_64-unknown-linux-musl/sccache
 
 echo Downloading and extracting $url
-curl -fL# $url | tar -xvzf - -O /sccache || exit $?
+curl -fL# $url | tar -xvzf - -C /sccache || exit $?
 
 echo Installing sccache
 chmod a+x $binary
