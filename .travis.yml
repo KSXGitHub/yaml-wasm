@@ -9,7 +9,7 @@ language: rust
 rust: stable
 
 env:
-  - DENO_VERSION=v0.40.0
+  - DENO_VERSION=v0.41.0
 
 cache:
   directories:
