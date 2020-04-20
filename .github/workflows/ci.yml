@@ -70,3 +70,11 @@ jobs:
         run: |
           export SHELL=/bin/zsh
           deno run -A run-tests.ts
+      - name: Prepare for uploading deno cache as artifacts
+        run: |
+          cp -r ~/.cache/deno deno-cache.tmp
+      - name: Upload deno cache as artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: deno-cache
+          path: deno-cache.tmp
