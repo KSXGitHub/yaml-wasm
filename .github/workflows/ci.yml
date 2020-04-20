@@ -13,7 +13,7 @@ jobs:
         rust:
           - stable
         deno:
-          - v0.41.0
+          - 0.41.0
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
@@ -61,9 +61,9 @@ jobs:
       - name: Install wasm-pack
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
       - name: Install Deno
-        run: |
-          curl -fsSL https://deno.land/x/install/install.sh | sh -s ${{ matrix.deno }}
-          sudo ln -s "$HOME/.deno/bin/deno" /bin/deno
+        uses: denolib/setup-deno@v1.3.0
+        with:
+          deno-version: ${{ matrix.deno }}
       - name: Build
         run: make lib
       - name: Test
