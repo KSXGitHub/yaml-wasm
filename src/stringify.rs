@@ -16,7 +16,7 @@ extern {
 ///
 /// **NOTE:** Circular object will result in infinite loop.
 #[wasm_bindgen]
-pub fn stringify(value: JsValue) -> Result<String, JsValue> {
+pub fn stringify(value: &JsValue) -> Result<String, JsValue> {
     set_panic_hook();
     let mut text = String::new();
     let mut emitter = YamlEmitter::new(&mut text);
@@ -30,7 +30,7 @@ pub fn stringify(value: JsValue) -> Result<String, JsValue> {
     Ok(text)
 }
 
-fn js2yaml(js: JsValue) -> Option<Yaml> {
+fn js2yaml(js: &JsValue) -> Option<Yaml> {
     if js.is_function() || js.is_symbol() || js.is_undefined() {
         return None;
     }
@@ -55,7 +55,7 @@ fn js2yaml(js: JsValue) -> Option<Yaml> {
         return Some(if Array::is_array(&js) {
             let vec = Array::from(&js)
                 .iter()
-                .filter_map(|x| js2yaml(x))
+                .filter_map(|x| js2yaml(&x))
                 .collect::<Vec<Yaml>>();
             Yaml::Array(vec)
         } else {
@@ -64,13 +64,13 @@ fn js2yaml(js: JsValue) -> Option<Yaml> {
             let entries: Array = if is_map(&js) {
                 Array::from(&js)
             } else {
-                Array::from(&Object::entries(&Object::from(js)))
+                Array::from(&Object::entries(&Object::from(JsValue::from(js))))
             };
             for entry in entries.iter() {
                 let js_pair = Array::from(&entry);
                 let js_key = js_pair.get(0);
                 let js_value = js_pair.get(1);
-                if let (Some(yaml_key), Some(yaml_value)) = (js2yaml(js_key), js2yaml(js_value)) {
+                if let (Some(yaml_key), Some(yaml_value)) = (js2yaml(&js_key), js2yaml(&js_value)) {
                     hash.insert(yaml_key, yaml_value);
                 }
             }
