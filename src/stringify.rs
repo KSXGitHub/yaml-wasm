@@ -5,10 +5,14 @@ use super::utils::*;
 
 #[wasm_bindgen(inline_js = r"
     export const is_map = obj => obj instanceof Map
-    export const entries = Object.entries
 ")]
 extern {
     fn is_map(obj: &JsValue) -> bool;
+}
+
+#[wasm_bindgen]
+extern {
+    #[wasm_bindgen(js_namespace = Object)]
     fn entries(obj: &JsValue) -> Array;
 }
 
