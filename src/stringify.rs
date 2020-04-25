@@ -5,9 +5,11 @@ use super::utils::*;
 
 #[wasm_bindgen(inline_js = r"
     export const is_map = obj => obj instanceof Map
+    export const entries = Object.entries
 ")]
 extern {
     fn is_map(obj: &JsValue) -> bool;
+    fn entries(obj: &JsValue) -> Array;
 }
 
 /// Encode a JavaScript value into a YAML text.
@@ -64,7 +66,7 @@ fn js2yaml(js: &JsValue) -> Option<Yaml> {
             let entries: Array = if is_map(&js) {
                 Array::from(&js)
             } else {
-                Array::from(&Object::entries(&Object::from(JsValue::from(js))))
+                entries(&JsValue::from(js))
             };
             for entry in entries.iter() {
                 let js_pair = Array::from(&entry);
