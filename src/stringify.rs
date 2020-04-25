@@ -6,7 +6,7 @@ use super::utils::*;
 #[wasm_bindgen(inline_js = r"
     export const is_map = obj => obj instanceof Map
 ")]
-extern "C" {
+extern {
     fn is_map(obj: &JsValue) -> bool;
 }
 

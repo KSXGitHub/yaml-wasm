@@ -11,7 +11,7 @@ interface ParseOptions {
 ";
 
 #[wasm_bindgen]
-extern "C" {
+extern {
     #[wasm_bindgen(typescript_type = "ParseOptions")]
     pub type ParseOptions;
 }
