@@ -26,7 +26,7 @@ jobs:
       - name: Install necessary packages
         run: sudo apt install -y make curl zsh
       - name: Cache deno
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.cache/deno
           key: deno-${{ runner.os }}-${{ hashFiles('deno-lock.json') }}
@@ -35,7 +35,7 @@ jobs:
             deno-${{ runner.os }}-
             deno-
       - name: Cache cargo registry
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.cargo/registry
           key: cargo-registry-${{ runner.os }}-${{ hashFiles('**/Cargo.lock') }}
@@ -43,7 +43,7 @@ jobs:
             cargo-registry-${{ runner.os }}-${{ hashFiles('**/Cargo.lock') }}
             cargo-registry-${{ runner.os }}-
       - name: Cache cargo index
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.cargo/git
           key: cargo-index-${{ runner.os }}-${{ hashFiles('**/Cargo.lock') }}
@@ -51,7 +51,7 @@ jobs:
             cargo-index-${{ runner.os }}-${{ hashFiles('**/Cargo.lock') }}
             cargo-index-${{ runner.os }}-
       - name: Cache cargo build
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: target
           key: cargo-build-target-${{ runner.os }}-${{ hashFiles('**/Cargo.lock') }}
