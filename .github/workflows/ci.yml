@@ -61,7 +61,7 @@ jobs:
       - name: Install wasm-pack
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
       - name: Install Deno
-        uses: denolib/setup-deno@v1.3.0
+        uses: denolib/setup-deno@v2.3.0
         with:
           deno-version: ${{ matrix.deno }}
       - name: Build
